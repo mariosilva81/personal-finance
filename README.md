@@ -29,7 +29,7 @@ Mario Silva e Mario Castilho
 1. Clone o repositório: 
 
 ```bash
-git clone git@github.com:mariosilva81/sistema-financeiro.git
+git clone git@github.com:mariosilva81/personal-finance.git
 ```
 
 2. Instale as dependências: 
