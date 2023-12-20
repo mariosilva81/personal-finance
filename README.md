@@ -5,13 +5,15 @@
 
 Bem-vindo à documentação da API desenvolvida para simplificar a gestão de finanças pessoais. Esta API oferece uma variedade de funcionalidades para ajudar os usuários a acompanhar suas transações financeiras e manter o controle sobre suas finanças de maneira eficiente.
 
-## Autor
+Trabalho para conclusão de módulo no Curso de Back-end na Cubos Academy.
 
-Mario Silva
+## Autores
+
+Mario Silva e Mario Castilho
 
 ## Versão
 
-1.0.0
+1.0.1
 
 ## Tecnologias Utilizadas
 
