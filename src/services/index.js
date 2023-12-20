@@ -1,11 +1,11 @@
-const { 
+const {
   createTransactionService,
   listTransactionsService,
   listTransactionByIdService,
   updateTransactionService,
   deleteTransactionService,
-  extractTransactionsService
-} = require('./transactions.services');
+  statementTransactionsService,
+} = require("./transactions.services");
 
 module.exports = {
   createTransactionService,
@@ -13,5 +13,5 @@ module.exports = {
   listTransactionByIdService,
   updateTransactionService,
   deleteTransactionService,
-  extractTransactionsService
-}
+  statementTransactionsService,
+};

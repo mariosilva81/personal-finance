@@ -1,10 +1,10 @@
-const categoriesRepository = require('../repositories/categories.repository');
+const categoriesRepository = require("../repositories/categories.repository");
 
 const categoriesService = {
-  categoriesList: async ()=>{
+  categoriesList: async () => {
     const { rows: categories } = await categoriesRepository.findAll();
-    return categories
-  }
-}
+    return categories;
+  },
+};
 
 module.exports = categoriesService;

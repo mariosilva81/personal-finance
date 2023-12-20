@@ -1,11 +1,11 @@
-const { 
-  createTransactionController, 
+const {
+  createTransactionController,
   listTransactionController,
   listTransactionByIdController,
   updateTransactionController,
   deleteTransactionController,
-  extractTransactionController
-} = require('./transactions.controllers');
+  statementTransactionController,
+} = require("./transactions.controllers");
 
 module.exports = {
   createTransactionController,
@@ -13,5 +13,5 @@ module.exports = {
   listTransactionByIdController,
   updateTransactionController,
   deleteTransactionController,
-  extractTransactionController
-}
+  statementTransactionController,
+};

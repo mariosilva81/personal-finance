@@ -1,20 +1,20 @@
-INSERT INTO "categorias" 
-  ("descricao")
+INSERT INTO "categories"
+  ("description")
 VALUES
-  ('Alimentação'),
-  ('Assinaturas e Serviços'),
-  ('Casa'),
-  ('Mercado'),
-  ('Cuidados Pessoais'),
-  ('Educação'),
-  ('Família'),
-  ('Lazer'),
+  ('Food'),
+  ('Subscriptions and Services'),
+  ('Home'),
+  ('Groceries'),
+  ('Personal Care'),
+  ('Education'),
+  ('Family'),
+  ('Entertainment'),
   ('Pets'),
-  ('Presentes'),
-  ('Roupas'),
-  ('Saúde'),
-  ('Transporte'),
-  ('Salário'),
-  ('Vendas'),
-  ('Outras receitas'),
-  ('Outras despesas');
+  ('Gifts'),
+  ('Clothing'),
+  ('Health'),
+  ('Transportation'),
+  ('Salary'),
+  ('Sales'),
+  ('Other Income'),
+  ('Other Expenses');

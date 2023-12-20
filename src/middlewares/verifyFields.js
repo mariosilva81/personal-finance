@@ -1,31 +1,35 @@
-const { AppError } = require('../errors');
+const { AppError } = require("../errors");
 
-const verifyFields = async (req, res, next)=> {
-  if (req.baseUrl === '/login') {
-    const { email, senha } = req.body;
+const verifyFields = async (req, _res, next) => {
+  if (req.baseUrl === "/login") {
+    const { email, password } = req.body;
 
-    if (!email || !senha) throw new AppError('Todos os campos obrigatórios devem ser informados.', 400);
-
-    return next();
-  }
-
-  if (req.baseUrl === '/usuario'){
-    const { nome, email, senha } = req.body;
-
-    if (!nome || !email || !senha) throw new AppError('Todos os campos obrigatórios devem ser informados.', 400);
+    if (!email || !password)
+      throw new AppError("All mandatory fields must be filled in.", 400);
 
     return next();
   }
 
-  if (req.baseUrl === '/transacao'){
-    const { descricao, valor, data, categoria_id, tipo } = req.body;
+  if (req.baseUrl === "/users") {
+    const { name, email, password } = req.body;
 
-    if (!descricao || !valor || !data || !categoria_id || !tipo) throw new AppError('Todos os campos obrigatórios devem ser informados.', 400);
-
-    if (tipo !== 'entrada' && tipo !== 'saida') throw new AppError('O tipo deve ser entrada ou saida', 400);
+    if (!name || !email || !password)
+      throw new AppError("All mandatory fields must be filled in.", 400);
 
     return next();
   }
-}
+
+  if (req.baseUrl === "/transactions") {
+    const { description, value, date, category_id, type } = req.body;
+
+    if (!description || !value || !date || !category_id || !type)
+      throw new AppError("All mandatory fields must be filled in.", 400);
+
+    if (type !== "income" && type !== "expense")
+      throw new AppError("The type must be either 'income' or 'expense'.", 400);
+
+    return next();
+  }
+};
 
 module.exports = verifyFields;

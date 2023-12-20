@@ -1,34 +1,33 @@
-const express = require('express');
+const express = require("express");
 const usersRouter = express.Router();
-const { 
-  userRegister, 
-  detailUser, 
-  editUser 
-} = require('../controllers/users.controllers');
-const { 
-  verifyEmail, 
-  verifyFields, 
+const {
+  userRegister,
+  detailUser,
+  editUser,
+} = require("../controllers/users.controllers");
+const {
+  verifyEmail,
+  verifyFields,
   verifyToken,
-  verifyEmailFormat
-} = require('../middlewares/index');
+  verifyEmailFormat,
+} = require("../middlewares/index");
 
-usersRouter.post('/', 
-  verifyFields, 
-  verifyEmailFormat, 
-  verifyEmail, 
+usersRouter.post(
+  "/",
+  verifyFields,
+  verifyEmailFormat,
+  verifyEmail,
   userRegister
 );
 
-usersRouter.get('/', 
-  verifyToken, 
-  detailUser
-);
+usersRouter.get("/", verifyToken, detailUser);
 
-usersRouter.put('/', 
-  verifyToken, 
-  verifyFields, 
-  verifyEmailFormat, 
-  verifyEmail, 
+usersRouter.put(
+  "/",
+  verifyToken,
+  verifyFields,
+  verifyEmailFormat,
+  verifyEmail,
   editUser
 );
 

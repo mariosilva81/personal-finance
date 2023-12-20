@@ -1,25 +1,25 @@
-CREATE TABLE IF NOT EXISTS "usuarios" (
+CREATE TABLE IF NOT EXISTS "users" (
   "id" SERIAL PRIMARY KEY,
-  "nome" VARCHAR(50) NOT NULL,
+  "name" VARCHAR(50) NOT NULL,
   "email" VARCHAR(50) NOT NULL UNIQUE,
-  "senha" VARCHAR(150) NOT NULL
+  "password" VARCHAR(150) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS "categorias" (
+CREATE TABLE IF NOT EXISTS "categories" (
   "id" SERIAL PRIMARY KEY,
-  "descricao" VARCHAR(50) NOT NULL
+  "description" VARCHAR(50) NOT NULL
 );
 
-CREATE TYPE "TIPO" AS ENUM ('entrada', 'saida');
+CREATE TYPE "TYPE" AS ENUM ('income', 'expense');
 
-CREATE TABLE IF NOT EXISTS "transacoes" (
+CREATE TABLE IF NOT EXISTS "transactions" (
   "id" SERIAL PRIMARY KEY,
-  "descricao" VARCHAR(150) NOT NULL,
-  "valor" INTEGER NOT NULL,
-  "data" TIMESTAMP NOT NULL,
-  "categoria_id" INTEGER NOT NULL,
-  "usuario_id" INTEGER NOT NULL,
-  "tipo" "TIPO" NOT NULL,
-  FOREIGN KEY ("categoria_id") REFERENCES "categorias"("id"),
-  FOREIGN KEY ("usuario_id") REFERENCES "usuarios"("id")
+  "description" VARCHAR(150) NOT NULL,
+  "value" INTEGER NOT NULL,
+  "date" TIMESTAMP NOT NULL,
+  "category_id" INTEGER NOT NULL,
+  "user_id" INTEGER NOT NULL,
+  "type" "TYPE" NOT NULL,
+  FOREIGN KEY ("category_id") REFERENCES "categories"("id"),
+  FOREIGN KEY ("user_id") REFERENCES "users"("id")
 );

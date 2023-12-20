@@ -1,54 +1,52 @@
-const express = require('express');
+const express = require("express");
 const transactionsRouter = express.Router();
-const { 
+const {
   verifyToken,
-  verifyCategory, 
+  verifyCategory,
   verifyTransaction,
-  verifyFields
-} = require('../middlewares/index');
+  verifyFields,
+} = require("../middlewares/index");
 const {
   createTransactionController,
   listTransactionController,
   listTransactionByIdController,
   updateTransactionController,
   deleteTransactionController,
-  extractTransactionController
-} = require('../controllers/index');
+  statementTransactionController,
+} = require("../controllers/index");
 
-transactionsRouter.post('/', 
-  verifyToken, 
-  verifyFields, 
-  verifyCategory, 
+transactionsRouter.post(
+  "/",
+  verifyToken,
+  verifyFields,
+  verifyCategory,
   createTransactionController
 );
 
-transactionsRouter.get('/', 
-  verifyToken, 
-  listTransactionController
-);
+transactionsRouter.get("/", verifyToken, listTransactionController);
 
-transactionsRouter.get('/extrato', 
-  verifyToken, 
-  extractTransactionController
-);
+transactionsRouter.get("/statement", verifyToken, statementTransactionController);
 
-transactionsRouter.get('/:id', 
-  verifyToken, 
-  verifyTransaction, 
+transactionsRouter.get(
+  "/:id",
+  verifyToken,
+  verifyTransaction,
   listTransactionByIdController
 );
 
-transactionsRouter.put('/:id', 
-  verifyToken, 
-  verifyFields, 
-  verifyTransaction, 
-  verifyCategory, 
+transactionsRouter.put(
+  "/:id",
+  verifyToken,
+  verifyFields,
+  verifyTransaction,
+  verifyCategory,
   updateTransactionController
 );
 
-transactionsRouter.delete('/:id', 
-  verifyToken, 
-  verifyTransaction, 
+transactionsRouter.delete(
+  "/:id",
+  verifyToken,
+  verifyTransaction,
   deleteTransactionController
 );
 

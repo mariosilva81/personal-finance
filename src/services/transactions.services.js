@@ -1,79 +1,95 @@
-const { AppError } = require('../errors');
-const { transactionsRepository, categoriesRepository } = require('../repositories/index');
+const {
+  transactionsRepository,
+  categoriesRepository,
+} = require("../repositories/index");
 
 const createTransactionService = async (payload, userId) => {
-  const insertTransactionResult = await transactionsRepository.create(payload, userId);
+  const insertTransactionResult = await transactionsRepository.create(
+    payload,
+    userId
+  );
   const newTransaction = insertTransactionResult.rows[0];
 
   return newTransaction;
-}
+};
 
 const listTransactionsService = async (userId, queryFilter) => {
-  if (Array.isArray(queryFilter)){
-    const filters = queryFilter.map(filter => {
+  if (Array.isArray(queryFilter)) {
+    const filters = queryFilter.map((filter) => {
       return filter.toLowerCase().charAt(0).toUpperCase() + filter.slice(1);
     });
 
-    const { rows: listTransactionResult } = await transactionsRepository.findAllByPk(userId);
+    const { rows: listTransactionResult } =
+      await transactionsRepository.findAllByPk(userId);
     const { rows: categoriesList } = await categoriesRepository.findAll();
-    const getCategoryFilter = categoriesList.filter(category => filters.includes(category.descricao));
+    const getCategoryFilter = categoriesList.filter((category) =>
+      filters.includes(category.description)
+    );
 
-    const listTransactionsByCategory = listTransactionResult.filter(transaction => {
-      return getCategoryFilter.some(category => category.id === transaction.categoria_id);
-    });
-      
+    const listTransactionsByCategory = listTransactionResult.filter(
+      (transaction) => {
+        return getCategoryFilter.some(
+          (category) => category.id === transaction.category_id
+        );
+      }
+    );
+
     return listTransactionsByCategory;
   }
 
-  const listTransactionResult = await transactionsRepository.findAllByPk(userId);
+  const listTransactionResult = await transactionsRepository.findAllByPk(
+    userId
+  );
   const transactions = listTransactionResult.rows;
 
   return transactions;
-}
+};
 
 const listTransactionByIdService = async (transactionId, userId) => {
-  const transactionResult = await transactionsRepository.findByPk(transactionId, userId);
+  const transactionResult = await transactionsRepository.findByPk(
+    transactionId,
+    userId
+  );
   const transactions = transactionResult.rows[0];
 
   return transactions;
-}
+};
 
 const updateTransactionService = async (payload, transactionId, userId) => {
   await transactionsRepository.update(payload, transactionId, userId);
-}
+};
 
 const deleteTransactionService = async (transactionId, userId) => {
   await transactionsRepository.destroy(transactionId, userId);
-}
+};
 
-const extractTransactionsService = async (userId) => { 
+const statementTransactionsService = async (userId) => {
   const transactions = await listTransactionsService(userId);
 
-  let sumEntry = 0;
-  let sumExit = 0;
+  let sumIncome = 0;
+  let sumExpense = 0;
 
-  for (const extract of transactions) {
-    if (extract.tipo === 'entrada') {
-      sumEntry += extract.valor;
-    } else if (extract.tipo === 'saida') {
-      sumExit += extract.valor;
+  for (const statement of transactions) {
+    if (statement.type === "income") {
+      sumIncome += statement.value;
+    } else if (statement.type === "expense") {
+      sumExpense += statement.value;
     }
   }
 
   const sum = {
-    entrada: sumEntry,
-    saida: sumExit
+    income: sumIncome,
+    expense: sumExpense,
   };
 
   return sum;
-}
+};
 
-
-module.exports = { 
+module.exports = {
   createTransactionService,
   listTransactionsService,
   listTransactionByIdService,
   updateTransactionService,
   deleteTransactionService,
-  extractTransactionsService
-}
+  statementTransactionsService,
+};

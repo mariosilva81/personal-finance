@@ -1,4 +1,4 @@
-const pkg = require('jsonwebtoken');
+const pkg = require("jsonwebtoken");
 
 class AppError extends Error {
   constructor(message, statusCode = 400) {
@@ -7,26 +7,23 @@ class AppError extends Error {
   }
 }
 
-const errorHandler = async (error, req, res, next) => {
+const errorHandler = async (error, _req, res, _next) => {
   if (error instanceof AppError) {
-    return res.status(error.statusCode).json(
-      { mensagem: error.message }
-    );
+    return res.status(error.statusCode).json({ message: error.message });
   }
 
   const { JsonWebTokenError } = pkg;
-  
+
   if (error instanceof JsonWebTokenError) {
-    return res.status(401).json(
-      { mensagem: 'Para acessar este recurso um token de autenticação válido deve ser enviado.' }
-    );
+    return res.status(401).json({
+      message:
+        "To access this feature, a valid authentication token must be sent.",
+    });
   }
 
   console.error(error);
 
-  return res.status(500).json(
-    { mensagem: 'Internal Server Error.' }
-  );
+  return res.status(500).json({ message: "Internal Server Error." });
 };
 
 module.exports = { AppError, errorHandler };
