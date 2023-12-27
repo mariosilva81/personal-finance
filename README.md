@@ -108,16 +108,6 @@ $ npm run dev
 O servidor local estará acessível em [http://localhost:3000](http://localhost:3000). 
 Observação: A porta poderá ser diferente caso tenha configurado de outra forma no `.env`.
 
-# API JavaScript - Documentação para Gestão de Finanças Pessoais
-
-## Introdução
-
-Bem-vindo à documentação da API JavaScript desenvolvida para simplificar a gestão de finanças pessoais. Esta API oferece uma variedade de funcionalidades para ajudar os usuários a acompanhar suas transações, categorias e manter o controle sobre suas finanças de maneira eficiente.
-
-## Objetivo
-
-O objetivo principal desta API é fornecer uma solução robusta e fácil de integrar em aplicativos que visam otimizar a gestão financeira pessoal. Com endpoints intuitivos e recursos abrangentes, os usuários podem cadastrar transações, visualizar extratos, gerenciar categorias e muito mais.
-
 ## Endpoints
 
 A API oferece os seguintes endpoints:
